@@ -1,0 +1,260 @@
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Ingresar nuevo producto</h3>
+
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+          <i class="fas fa-minus"></i></button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">NUEVO PRODUCTO</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form (ngSubmit)="onSubmit(formArete)" #formArete="ngForm" enctype="multipart/form-data">           
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-6">
+                  <!-- text input -->
+                  <div class="form-group">
+                    <input type="text" 
+                            hidden
+                            name="id"
+                            #id="ngModel"
+                            [(ngModel)]="areteService.areteSelect.id"
+                            >
+                    <input type="text" 
+                            hidden
+                            name="fotoUpdate"
+                            #fotoUpdate="ngModel"
+                            [(ngModel)]="areteService.areteSelect.fotoUpdate"
+                            >
+                    <label>Nombre del producto:</label>
+                    <input type="text" 
+                            class="form-control" 
+                            name="nombre"
+                            #nombre="ngModel"
+                            [(ngModel)]="areteService.areteSelect.nombre"
+                            placeholder="Ingrese el nombre del producto..." 
+                            >
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <!-- text input -->
+                  <div class="form-group">
+                    <label>Descripción del producto:</label>
+                    <input type="text" 
+                            class="form-control" 
+                            name="descripcion" 
+                            #descripcion="ngModel"
+                            [(ngModel)]="areteService.areteSelect.descripcion"
+                            placeholder="Ingrese una descripción del producto..." 
+                            >
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-3">
+                  <!-- text input -->
+                  <div class="form-group">
+                    <label>Precio/Venta:</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                      </div>
+                      <input type="number" 
+                              name="precio" 
+                              #precio="ngModel"
+                              [(ngModel)]="areteService.areteSelect.precio"
+                              class="form-control" 
+                              required>
+                      <div class="input-group-append">
+                        <span class="input-group-text">0.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="exampleInputFile">Subir el grupo de imagenes del producto</label>
+                    <div class="input-group">
+                      <div class="custom-file">              
+                        
+                        <!-- <label class="custom-file-label"></label> -->
+                        <input type="file" 
+                                class="custom-file-input" 
+                                name="wr"
+                                #wr="ngModel"
+                                [(ngModel)]="areteService.areteSelect.wr"
+                                id="exampleInputWr" 
+                                
+                                (change)="fileEventWr($event)">
+                      </div>                  
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="exampleInputFile">Subir imagen del producto</label>
+                    <div class="input-group">
+                      <div class="custom-file">              
+                        
+                        <!-- <label class="custom-file-label"></label> -->
+                        <input type="file" 
+                                class="custom-file-input" 
+                                name="foto"
+                                #foto="ngModel"
+                                [(ngModel)]="areteService.areteSelect.foto"
+                                id="exampleInputFile" 
+                                
+                                (change)="fileEvent($event)">
+                      </div>                  
+                    </div>
+                  </div>
+                </div>                
+                
+              </div>
+            </div>
+            <!-- /.card-body -->
+          
+            <div class="card-footer">
+              <button type="submit" class="btn btn-secondary">Guardar</button>
+              <button class="btn btn-danger" (click)="onClearForm(formArete)" style="margin-left: 1rem">Cancelar</button>
+            </div>
+            
+          </form>
+        </div>
+        <!-- /.card -->
+      </div>      
+    </div>
+    <!-- /.card-body -->
+
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Catalogo de productos</h3>
+
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+        <i class="fas fa-minus"></i></button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="col-md-12">
+      <div class="card card-secondary">
+        <div class="card-header">
+          <h3 class="card-title">LISTA DE PRODUCTOS</h3>
+          <div class="card-tools">
+            <!-- <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+              </div>
+            </div> -->
+          </div>
+        </div>
+          
+        <!-- /.card-header -->
+        <div class="card-body">
+          <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+              <div class="col-sm-12">
+                <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                  <thead>
+                    <tr role="row">
+                      <th>ID</th>
+                      <!-- <th>CATEGORIA</th> -->
+                      <th>PRODUCTO</th>
+                      <th>DESCRIPCIÓN</th>
+                      <!-- <th>CANTIDAD</th> -->
+                      <!-- <th>UNIDAD</th> -->
+                      <!-- <th>PRECIO/COMPRA</th> -->
+                      <th>PRECIO/VENTA</th>
+                      <th>IMAGEN</th>
+                      <!-- <th>MODO AR</th> -->
+                      <th>ACCIONES</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let item of aretes | filtro:page; let indice=index">
+                    <tr role="row" class="odd">
+                      <td hidden>{{ item.id }}</td>
+                      <td tabindex="0" class="sorting_1">{{ indice+1 }}</td>
+                      <!-- <td>{{ item.name }}</td> -->
+                      <td>{{ item.nombre }}</td>
+                      <td>{{ item.descripcion }}</td>
+                      <!-- <td>{{ }}</td> -->
+                      <td>$ {{ item.precio }}</td>
+                      <td><img src="{{item.foto}}" style="height: 150px; width: auto; border-radius: 5px;"/></td>
+                      <!-- <td>{{ item.modAR}}</td> -->
+                      <!-- <td>Win 98+ / OSX.2+</td>
+                      <td>Firefox 1.0</td> -->
+                      <td>
+                        <button class="btn btn-warning" data-toggle="tooltip" 
+                                title="" 
+                                id="btnEditarUM" 
+                                (click)="onEdit(item)"
+                                data-original-title="Editar"><i class="fas fa-pencil-alt"></i>  
+                        </button>
+                          &nbsp;
+                        <button class="btn btn-danger" 
+                                data-toggle="tooltip" 
+                                title="" 
+                                id="btnEliminarUM" 
+                                (click)="onDelete(item.id)" 
+                                data-original-title="Eliminar"><i class="fas fa-trash-alt"></i>  </button>
+                      </td> 
+                    </tr>                              
+                  </tbody>
+                          
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-md-3">
+                <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                  <ul class="pagination">
+                    <li class="paginate_button page-item previous" id="example1_previous">
+                      <!-- <a (click)="prevPage()" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">
+                        Anterior
+                      </a> -->
+                      <button class="btn btn-secondary" 
+                              style="margin: 5px"
+                              (click)="prevPage()">
+                        Anterior
+                      </button>
+                    </li>
+                    <li class="paginate_button page-item next" id="example1_next">
+                      <!-- <a (click)="nextPage()" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">
+                        Siguiente
+                      </a> -->
+                      <button class="btn btn-secondary" 
+                              style="margin: 5px"
+                              [disabled]="(aretes | filtro:page).length === 0"
+                              (click)="nextPage()">
+                        Siguiente
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+    </div>
+    
+  </div>
+  <!-- /.card-body -->
+
+  <!-- /.card-footer-->
+</div>
+

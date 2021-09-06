@@ -1,0 +1,134 @@
+<div class="hold-transition register-page">
+    <div class="register-box animate__animated animate__backInUp">
+      <div class="register-logo">
+        <a routerLink =""><b>Admin</b>SOFT</a>
+      </div>
+  
+      <div class="card ">
+        <div class="card-body register-card-body">
+          <p class="login-box-msg">Register a new membership</p>
+  
+          <!-- FORMULARIO DE REGISTRO -->
+          <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+            <!-- INPUT NOMBRES -->
+            <div class="input-group mb-3">
+              <input type="text" 
+                      class="form-control" 
+                      placeholder="Ingrese sus nombre completo"
+                      formControlName="name"
+                      [class.is-invalid]="form.name.touched && form.name.invalid"
+                      >
+
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user" style="color: rgb(48, 37, 37);"></span>
+                </div>
+              </div>
+
+              <div *ngIf="form.name.errors" class="invalid-feedback">
+                <div *ngIf="form.name.errors.required">El nombre es obligatorio</div>
+                <div *ngIf="form.name.errors.pattern">Ingrese solo letras sin numeros ni caracteres especiales</div>
+              </div>
+            </div>
+
+            <!-- INPUT NUMERO DE TELEFONO -->
+            <div class="input-group mb-3">
+              <input type="text"                                       
+                      class="form-control" 
+                      placeholder="Ingrese su numero de tefono"
+                      formControlName="mobile"
+                      [class.is-invalid]="form.mobile.touched && form.mobile.invalid"
+                      >
+
+              <div class="input-group-append">
+                <div class="input-group-text">                  
+                  <span class="fas fa-mobile" style="color: rgb(48, 37, 37);"></span>
+                </div>
+              </div>
+
+              <div *ngIf="form.mobile.errors" class="invalid-feedback">
+                <div *ngIf="form.mobile.errors.required">El numero de telefono es obligatorio</div>
+                <div *ngIf="form.mobile.errors.pattern">Ingrese solo caracteres numericos</div>                
+                <div *ngIf="form.mobile.errors.maxlength || form.mobile.errors.minlength">El numero de telefono debe contener 10 caracteres</div>
+              </div>
+            </div>
+
+            <!-- INPUT CORREO ELECTRONICO -->
+            <div class="input-group mb-3">
+              <input type="email" 
+                      class="form-control" 
+                      placeholder="Ingrese su correo electronico"
+                      formControlName="email"
+                      [class.is-invalid]="form.email.touched && form.email.invalid"
+                      >
+
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope" style="color: rgb(48, 37, 37);"></span>
+                </div>
+              </div>
+
+              <div *ngIf="form.email.errors" class="invalid-feedback">
+                <div *ngIf="form.email.errors.required">El email es obligatorio</div>
+                <div *ngIf="form.email.errors.email || form.email.errors.pattern">El email debe de ser válido</div>
+              </div>        
+            </div>
+
+            <!-- INPUT CONTRASEÑA -->
+            <div class="input-group mb-3">
+              <input type="password" 
+                      class="form-control" 
+                      placeholder="Ingrese su contraseña"
+                      formControlName="pass"
+                      [class.is-invalid]="form.pass.touched && form.pass.invalid"
+                      >
+
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock" style="color: rgb(48, 37, 37);;"></span>
+                </div>
+              </div>
+              <div *ngIf="form.pass.errors" class="invalid-feedback">
+                <div *ngIf="form.pass.errors.required">Password is required</div>
+                <div *ngIf="form.pass.errors.minlength">Password must be at least 6 characters</div>
+              </div>
+            </div>
+            
+            <!-- INPUT CONFIRMAR CONTRASEÑA -->
+            <div class="input-group mb-3">
+              <input type="password" 
+                      class="form-control" 
+                      placeholder="Repita su contraseña"
+                      formControlName="passConfirm"
+                      [class.is-invalid]="form.passConfirm.touched && form.passConfirm.invalid"
+                      >
+
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock" style="color: rgb(48, 37, 37);"></span>
+                </div>
+              </div>
+
+              <div *ngIf="form.passConfirm.errors" class="invalid-feedback">
+                <div *ngIf="form.passConfirm.errors.required">Repetir contraseña es requerido</div>
+                <div *ngIf="form.passConfirm.errors.mustMatch">Las contraseñas debden de coincidir</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-7">
+              </div>
+              <!-- /.col -->
+              <div class="col-5">
+                <button type="submit" class="btn btn-outline-secondary btn-block" [disabled]="!registerForm.valid">Registrarse</button>
+              </div>
+              <!-- /.col -->
+            </div>
+          </form>
+  
+          <a routerLink="/login" class="text-center link-reg">Ya tengo una cuenta!</a>
+        </div>
+        <!-- /.form-box -->
+      </div><!-- /.card -->
+    </div>
+    <!-- /.register-box -->
+  </div>

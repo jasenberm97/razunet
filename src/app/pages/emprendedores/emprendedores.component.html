@@ -1,0 +1,108 @@
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Catalogo de productos</h3>
+  
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+          <i class="fas fa-minus"></i></button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="col-md-12">
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">LISTA DE PRODUCTOS</h3>
+            <div class="card-tools">
+            </div>
+          </div>
+            
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+              <div class="row">
+                <div class="col-sm-12">
+                  <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                    <thead>
+                      <tr role="row">
+                        <th>ID</th>
+                        <!-- <th>CATEGORIA</th> -->
+                        <th>NOMBRE</th>
+                        <th>CORREO</th>
+                        <th>CELULAR</th>
+                        <!-- <th>MODO AR</th> -->
+                        <th>ACCIONES</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let item of emprendedores | filtro:page; let indice=index">
+                      <tr role="row" class="odd"  *ngIf=" item.rol  != 'administrador'">
+                        <td hidden>{{ item.id }}</td>
+                        <td tabindex="0" class="sorting_1">{{ indice+1 }}</td>
+                        <!-- <td>{{ item.name }}</td> -->
+                        <td>{{ item.nombre }}</td>
+                        <td>{{ item.correo }}</td>
+                        <!-- <td>{{ }}</td> -->
+                        <td>{{ item.celular }}</td>
+                       
+                        <td>
+                          <!-- <button class="btn btn-warning" data-toggle="tooltip" 
+                                  title="" 
+                                  id="btnEditarUM" 
+                                  (click)="onEdit(item)"
+                                  data-original-title="Editar"><i class="fas fa-pencil-alt"></i>  
+                          </button>-->
+                          &nbsp;
+                          &nbsp;  
+                          &nbsp; 
+                          <button class="btn btn-danger" 
+                                  data-toggle="tooltip" 
+                                  title="" 
+                                  id="btnEliminarUM" 
+                                  (click)="onDelete(item.id)" 
+                                  data-original-title="Eliminar"><i class="fas fa-trash-alt"></i>  </button>
+                        </td> 
+                      </tr>                              
+                    </tbody>
+                            
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-3">
+                  <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                    <ul class="pagination">
+                      <li class="paginate_button page-item previous" id="example1_previous">
+                        <!-- <a (click)="prevPage()" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">
+                          Anterior
+                        </a> -->
+                        <button class="btn btn-secondary" 
+                                style="margin: 5px"
+                                (click)="prevPage()">
+                          Anterior
+                        </button>
+                      </li>
+                      <li class="paginate_button page-item next" id="example1_next">
+                        <!-- <a (click)="nextPage()" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">
+                          Siguiente
+                        </a> -->
+                        <button class="btn btn-secondary" 
+                                style="margin: 5px"
+                                [disabled]="(emprendedores | filtro:page).length === 0"
+                                (click)="nextPage()">
+                          Siguiente
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      
+    </div>
+    <!-- /.card-body -->
+  
+    <!-- /.card-footer-->
+  </div>
