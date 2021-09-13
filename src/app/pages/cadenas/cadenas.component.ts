@@ -38,14 +38,14 @@ export class ProductosComponent implements OnInit {
 
     this.user = await this.authServ.getCurrentUser();
 
-    this.cadenaService.getCadenas(this.user.uid).on('value', (snapshot) =>{
-      this.cadenas = [];
-      snapshot.forEach(item => {
-        let x = item.toJSON();
-        x['id'] = item.key;
-        this.cadenas.push(x);
-      })
-    });
+    // this.cadenaService.getCadenas(this.user.uid).on('value', (snapshot) =>{
+    //   this.cadenas = [];
+    //   snapshot.forEach(item => {
+    //     let x = item.toJSON();
+    //     x['id'] = item.key;
+    //     this.cadenas.push(x);
+    //   })
+    // });
 
   }
 
@@ -66,11 +66,11 @@ export class ProductosComponent implements OnInit {
 
     if (formCadena.value.id == null && this.urlImage != null) {   
       console.log("nuevo registro")
-      var id = this.cadenaService.createCadena(this.cadena);
+      // var id = this.cadenaService.createCadena(this.cadena);
       var modoAr = new Cadena();
       modoAr.usuario = this.user.uid;
       modoAr.modAR = this.urlArchivo;
-      this.cadenaService.createModoAr(id, modoAr);
+      // this.cadenaService.createModoAr(id, modoAr);
       this.onClearForm(formCadena);
       
     }

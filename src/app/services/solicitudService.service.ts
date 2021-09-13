@@ -12,11 +12,13 @@ export class SolicitudService {
   solicitudList: AngularFireList<any>;
   solicitudSelect: Solicitud = new Solicitud();
 
-  constructor(public angularFireStorage: AngularFireStorage, public angularFireDataBase: AngularFireDatabase) { }
+  constructor(public angularFireStorage: AngularFireStorage, public angularFireDataBase: AngularFireDatabase) { 
+    this.solicitudList = this.angularFireDataBase.list('productoAr');
+    
+  }
 
   //  OBTENER PRODUCTOS DE SOLICITUD
   getSolicitudes(){
-    this.solicitudList = this.angularFireDataBase.list('productoAr');
     return this.angularFireDataBase.database.ref('productoAr');
   }
 
@@ -43,6 +45,8 @@ export class SolicitudService {
 
   // ELIMINA LA SOLICITUD RESULETA
   deleteSolicitud(id: any){
+    this.solicitudList = this.angularFireDataBase.list('productoAr');
+    console.log(id)
     this.solicitudList.remove(id);
   }
 

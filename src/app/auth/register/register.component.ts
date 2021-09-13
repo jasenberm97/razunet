@@ -22,6 +22,10 @@ export class RegisterComponent implements OnInit {
           Validators.required,
           Validators.pattern(/^[a-zA-Z\s]+$/)]
         ],
+        marca:["", [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z\s]+$/)]
+        ],
         mobile:["", [
           Validators.required,
           Validators.maxLength(10),

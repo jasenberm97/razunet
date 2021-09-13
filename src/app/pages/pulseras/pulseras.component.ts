@@ -62,11 +62,11 @@ export class PulserasComponent implements OnInit {
 
     if (formPulsera.value.id == null && this.urlImage != null) {   
       console.log("nuevo registro")
-      var id = this.pulseraService.createPulsera(this.pulsera);
+      // var id = this.pulseraService.createPulsera(this.pulsera);
       var modoAr = new Pulsera();
       modoAr.usuario = this.user.uid;
       modoAr.modAR = this.urlArchivo;
-      this.pulseraService.createModoAr(id, modoAr);
+      // this.pulseraService.createModoAr(id, modoAr);
       this.onClearForm(formPulsera);
       
     }

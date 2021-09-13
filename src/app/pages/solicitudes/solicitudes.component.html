@@ -35,6 +35,7 @@
                           >        
                   <label>Nombre del producto:</label>
                   <input type="text" 
+                          disabled
                           class="form-control" 
                           name="nombre"
                           #nombre="ngModel"
@@ -49,6 +50,7 @@
                   <label>Descripción del producto:</label>
                   <input type="text" 
                           class="form-control" 
+                          disabled
                           name="descripcion" 
                           #descripcion="ngModel"
                           [(ngModel)]="solicitudService.solicitudSelect.descripcion"
@@ -75,6 +77,20 @@
                   </div>
                 </div>                  
               </div>  
+
+              <div class="col-sm-3">
+                <!-- text input -->
+                <div class="form-group">
+                  <label>URL "AR" del producto:</label>
+                  <input type="text" 
+                          class="form-control"                           
+                          name="urlAR" 
+                          #descripcion="ngModel"
+                          [(ngModel)]="solicitudService.solicitudSelect.urlAR"
+                          placeholder="Ingrese la URL de AR generada del producto..." 
+                          >
+                </div>
+              </div>
             </div>
 
             <div class="row">              
@@ -128,7 +144,7 @@
                         <th>ACCIONES</th>
                       </tr>
                     </thead>
-                    <tbody *ngFor="let item of solicitudes | filtro:page; let indice=index">
+                    <tbody *ngFor="let item of solicitudes; let indice=index">
                       <tr role="row" class="odd">
                         <td hidden>{{ item.id }}</td>
                         <td hidden>{{ item.tipo }}</td>

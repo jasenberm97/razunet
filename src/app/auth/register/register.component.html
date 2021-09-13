@@ -6,7 +6,7 @@
   
       <div class="card ">
         <div class="card-body register-card-body">
-          <p class="login-box-msg">Register a new membership</p>
+          <p class="login-box-msg">Registro de Nuevo Usuario</p>
   
           <!-- FORMULARIO DE REGISTRO -->
           <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
@@ -14,7 +14,7 @@
             <div class="input-group mb-3">
               <input type="text" 
                       class="form-control" 
-                      placeholder="Ingrese sus nombre completo"
+                      placeholder="Ingrese sus nombres completos"
                       formControlName="name"
                       [class.is-invalid]="form.name.touched && form.name.invalid"
                       >
@@ -28,6 +28,27 @@
               <div *ngIf="form.name.errors" class="invalid-feedback">
                 <div *ngIf="form.name.errors.required">El nombre es obligatorio</div>
                 <div *ngIf="form.name.errors.pattern">Ingrese solo letras sin numeros ni caracteres especiales</div>
+              </div>
+            </div>
+
+            <!-- INPUT MARCA -->
+            <div class="input-group mb-3">
+              <input type="text" 
+                      class="form-control" 
+                      placeholder="Ingrese el nombre de su marca"
+                      formControlName="marca"
+                      [class.is-invalid]="form.marca.touched && form.marca.invalid"
+                      >
+
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user" style="color: rgb(48, 37, 37);"></span>
+                </div>
+              </div>
+
+              <div *ngIf="form.marca.errors" class="invalid-feedback">
+                <div *ngIf="form.marca.errors.required">El nombre de la marca es obligatorio</div>
+                <div *ngIf="form.marca.errors.pattern">Ingrese solo letras sin numeros ni caracteres especiales</div>
               </div>
             </div>
 

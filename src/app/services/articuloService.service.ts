@@ -1,54 +1,49 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
-
 import { finalize } from 'rxjs/operators';
-
-import { Pulsera } from '../models/pulsera';
+import { Cadena } from '../models/cadena';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PulseraService {
+export class ArticuloService {
 
-  pulseraList: AngularFireList<any>;
-  pulseraSelect: Pulsera = new Pulsera()
+  cadenaList: AngularFireList<any>;
+  cadenaSelect: Cadena = new Cadena();
   
 
   constructor(public angularFireStorage: AngularFireStorage, public angularFireDataBase: AngularFireDatabase){
-    this.pulseraList = this.angularFireDataBase.list('pulsera');
-
+    this.cadenaList = this.angularFireDataBase.list('productos');
+    
   }
-
+  
   //  OBTIENE TODAS LAS CADENAS DE LA BASE DE DATOS 
-  getPulseras(uid: any){
-    return this.angularFireDataBase.database.ref('pulsera').orderByChild('usuario').equalTo(uid);
+  getProductos(uid: any){
+    console.log("usuaroi"+uid);
+    return this.angularFireDataBase.database.ref('productos').orderByChild('idEmprendimiento').equalTo(uid);
   }
 
   //  CREA UNA NUEVA CADENA EN LA BASE DE DATOS
-  // createPulsera(cadena: any){
-  //   return this.pulseraList.push(cadena).key;
-  // }
-
-  createPulsera(id: any, cadena: any){
-    return this.angularFireDataBase.database.ref('pulsera').child(id).set(cadena);
+  createProducto(cadena: any){
+    return this.cadenaList.push(cadena).key;
   }
 
   // ACTUALIZA UNA CADENA EXISTENTE
-  updatePulsera(id: any, cadena: any){
-    this.pulseraList.update(id, cadena);
+  updateProducto(id: any, cadena: any){
+    this.cadenaList.update(id, cadena);
   }
 
   //  ELIMINA UNA CADENA EXISTENTE
-  deletePulsera(id: any){
-    this.pulseraList.remove(id);
+  deleteProducto(id: any){
+    this.cadenaList.remove(id);
   }
 
   //  SUBE UNA IMAGEN Y DEVUELVE LA RUTA DE ACCESO PUBLICO
   uploadImage(file: any): Promise<String>{
     return new Promise(resolve => {
       const id = Math.random().toString(36).substr(2);
-      const filePath = `pulsera/${id}`;
+      const filePath = `producto/${id}`;
       const ref = this.angularFireStorage.ref(filePath);
       const task = this.angularFireStorage.upload(filePath, file);
 
@@ -68,7 +63,7 @@ export class PulseraService {
   async uploadFile(file: any): Promise<String>{
     return await new Promise(resolve => {
       const id = Math.random().toString(36).substr(2);
-      const filePath = `pulseraFile/${id}`;
+      const filePath = `productoFile/${id}`;
       const ref = this.angularFireStorage.ref(filePath);
       const task = this.angularFireStorage.upload(filePath, file);
 
@@ -85,10 +80,10 @@ export class PulseraService {
   }
 
   //  CREAR REFERENCIA DEL MODO AR
-  createModoAr(id: any, pulsera: any){
-    
-    return this.angularFireDataBase.database.ref('productoAr').child(id).set(pulsera);
+  createModoAr(id: any, cadena: any){    
+    return this.angularFireDataBase.database.ref('productoAr').child(id).set(cadena);
   }
+
 
   // ELIMINAR IMAGENES
   deleteImage(){

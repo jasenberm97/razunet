@@ -62,11 +62,11 @@ export class AretesComponent implements OnInit {
 
     if (formArete.value.id == null && this.urlImage != null && this.urlArchivo != null) {   
       console.log("nuevo registro")
-      var id = this.areteService.createArete(this.arete);
+      // var id = this.areteService.createArete(this.arete);
       var modoAr = new Arete();
       modoAr.usuario = this.user.uid;
       modoAr.modAR = this.urlArchivo;
-      this.areteService.createModoAr(id, modoAr);
+      // this.areteService.createModoAr(id, modoAr);
       this.onClearForm(formArete);
       
     }

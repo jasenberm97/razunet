@@ -17,6 +17,7 @@ import { AretesComponent } from './aretes/aretes.component';
 import { SolicitudesComponent } from './solicitudes/solicitudes.component';
 import { EmprendedoresComponent } from './emprendedores/emprendedores.component';
 import { ClientesComponent } from './clientes/clientes.component';
+import { ArticulosComponent } from './articulos/articulos.component';
 
 
 
@@ -33,7 +34,8 @@ import { ClientesComponent } from './clientes/clientes.component';
     AnillosComponent,
     SolicitudesComponent,
     EmprendedoresComponent,
-    ClientesComponent
+    ClientesComponent,
+    ArticulosComponent
   ],
 
   exports:[

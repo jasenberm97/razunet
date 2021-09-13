@@ -17,17 +17,22 @@ export class CadenaService {
   cadenaSelect: Cadena = new Cadena();
   
 
-  constructor(public angularFireStorage: AngularFireStorage, public angularFireDataBase: AngularFireDatabase){}
-
+  constructor(public angularFireStorage: AngularFireStorage, public angularFireDataBase: AngularFireDatabase){
+    
+    this.cadenaList = this.angularFireDataBase.list('cadena');
+  }
+  
   //  OBTIENE TODAS LAS CADENAS DE LA BASE DE DATOS 
   getCadenas(uid: any){
-    this.cadenaList = this.angularFireDataBase.list('cadena');
     return this.angularFireDataBase.database.ref('cadena').orderByChild('usuario').equalTo(uid);
   }
 
   //  CREA UNA NUEVA CADENA EN LA BASE DE DATOS
-  createCadena(cadena: any){
-    return this.cadenaList.push(cadena).key;
+  // createCadena(cadena: any){
+  //   return this.cadenaList.push(cadena).key;
+  // }
+  createCadena(id: any, cadena: any){
+    return this.angularFireDataBase.database.ref('cadena').child(id).set(cadena);
   }
 
   // ACTUALIZA UNA CADENA EXISTENTE
@@ -37,6 +42,7 @@ export class CadenaService {
 
   //  ELIMINA UNA CADENA EXISTENTE
   deleteCadena(id: any){
+    this.cadenaList = this.angularFireDataBase.list('cadena');
     this.cadenaList.remove(id);
   }
 

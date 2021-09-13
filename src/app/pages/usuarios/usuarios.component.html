@@ -19,7 +19,7 @@
 
                   <h3 class="profile-username text-center">{{ emprendedor.name }}</h3>
   
-                  <p class="text-muted text-center" *ngIf=" emprendedor.rol  == ''">Emprendedor/a</p>
+                  <p class="text-muted text-center" *ngIf=" emprendedor.rol  != 'administrador'">Emprendedor/a</p>
                   <p class="text-muted text-center" *ngIf=" emprendedor.rol  == 'administrador'">Administrador/a</p>
   
                   <ul class="list-group list-group-unbordered mb-3">
@@ -27,8 +27,11 @@
                       <b>Correo:</b> <a class="float-right">{{ emprendedor.email }}</a>
                     </li>
                     <li class="list-group-item">
-                      <b>celular: </b> <a class="float-right">{{ emprendedor.mobile }}</a>
-                    </li>                    
+                      <b>Celular: </b> <a class="float-right">{{ emprendedor.mobile }}</a>
+                    </li>     
+                    <li class="list-group-item" *ngIf=" emprendedor.rol  != 'administrador'">
+                      <b>Marca: </b> <a class="float-right">{{ emprendedor.marca }}</a>
+                    </li>                 
                   </ul>
   
                   <!-- <a href="#" class="btn btn-primary btn-block"><b>Seguir</b></a> -->

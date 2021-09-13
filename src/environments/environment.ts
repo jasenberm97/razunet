@@ -16,16 +16,29 @@ export const environment = {
   // }
 
   //  PRODUCCION
+  
+  // firebase: {
+  //   apiKey: "AIzaSyDVaMSbWMzCnI8efbSpwNh9JDVs6gdR7Cg",
+  //   authDomain: "razunetfashion.firebaseapp.com",
+  //   databaseURL: "https://razunetfashion-default-rtdb.firebaseio.com",
+  //   projectId: "razunetfashion",
+  //   storageBucket: "razunetfashion.appspot.com",
+  //   messagingSenderId: "16895416068",
+  //   appId: "1:16895416068:web:15e567b8dee54d8bcfe251",
+  //   measurementId: "G-D1M1SHCK0W"
+  // }
+
   firebase: {
-    apiKey: "AIzaSyDVaMSbWMzCnI8efbSpwNh9JDVs6gdR7Cg",
-    authDomain: "razunetfashion.firebaseapp.com",
-    databaseURL: "https://razunetfashion-default-rtdb.firebaseio.com",
-    projectId: "razunetfashion",
-    storageBucket: "razunetfashion.appspot.com",
-    messagingSenderId: "16895416068",
-    appId: "1:16895416068:web:15e567b8dee54d8bcfe251",
-    measurementId: "G-D1M1SHCK0W"
+    apiKey: "AIzaSyCT-rDaExA7bmdKqXI-2iRXZq6WtDO4G-Y",
+    authDomain: "razunetfashionug.firebaseapp.com",
+    databaseURL: "https://razunetfashionug-default-rtdb.firebaseio.com",
+    projectId: "razunetfashionug",
+    storageBucket: "razunetfashionug.appspot.com",
+    messagingSenderId: "359611258700",
+    appId: "1:359611258700:web:a624c9a73ccf4eddef21e9",
+    measurementId: "G-1TYK00TRWH"
   }
+
 };
 
 /*

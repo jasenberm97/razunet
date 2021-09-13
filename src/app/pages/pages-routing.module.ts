@@ -13,6 +13,7 @@ import { AnillosComponent } from './anillos/anillos.component';
 import { SolicitudesComponent } from './solicitudes/solicitudes.component';
 import { EmprendedoresComponent } from './emprendedores/emprendedores.component';
 import { ClientesComponent } from './clientes/clientes.component';
+import { ArticulosComponent } from './articulos/articulos.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
     // {path: 'categorias', component: CategoriasComponent, data:{titulo:'Categorias',}},
     {path: 'pulseras', component: PulserasComponent, data:{titulo:'Pulseras',}},
     {path: 'aretes', component: AretesComponent, data:{titulo:'Aretes',}},
+    {path: 'articulos', component: ArticulosComponent, data:{titulo:'Articulos',}},
     {path: 'anillos', component: AnillosComponent, data:{titulo:'Anillos',}},
     //ADMINISTRADOR
     {path: 'solicitudes', component: SolicitudesComponent, data:{titulo:'Solicitudes',}},

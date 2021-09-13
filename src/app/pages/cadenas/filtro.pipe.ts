@@ -8,7 +8,7 @@ export class FiltroPipe implements PipeTransform {
 
   transform(cadenas: Object[], page: number = 0): Cadena[] {
     if (cadenas) {
-      return cadenas.slice(page, page + 2);
+      return cadenas.slice(page, page + 5);
       
     }
   }

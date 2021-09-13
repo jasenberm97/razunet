@@ -22,10 +22,11 @@ export class SolicitudesComponent implements OnInit {
 
   async ngOnInit() {
     this.getAr();
+
   }
 
   async getAr(){
-    await this.solicitudService.getSolicitudes().once('value', snapshot =>{
+    this.solicitudService.getSolicitudes().on('value', snapshot =>{
       snapshot.forEach(element =>{        
 
         let id = element.key;
@@ -117,9 +118,10 @@ export class SolicitudesComponent implements OnInit {
 
   onSubmit(formSolicitud: NgForm){
     this.solicitud = new Solicitud();
-    this.solicitud.modAR = this.urlArchivo;
+    this.solicitud.modARV = this.urlArchivo;
+    this.solicitud.modAR = formSolicitud.value.urlAR;
     
-    if (formSolicitud.value.id != null && this.urlArchivo != null) {   
+    if (formSolicitud.value.id != null && this.urlArchivo != null && formSolicitud.value.urlAR != null) {   
       console.log("nuevo registro")
       console.log(formSolicitud.value.tipo)
       this.solicitudService.updateProducto(formSolicitud.value.id, formSolicitud.value.tipo, this.solicitud);

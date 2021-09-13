@@ -12,17 +12,23 @@ export class AnilloService {
   anilloList: AngularFireList<any>;
   anilloSelect: Anillo = new Anillo()
 
-  constructor(public angularFireStorage: AngularFireStorage, public angularFireDataBase: AngularFireDatabase){}
+  constructor(public angularFireStorage: AngularFireStorage, public angularFireDataBase: AngularFireDatabase){
+    this.anilloList = this.angularFireDataBase.list('anillo');
+    
+  }
 
   //  OBTIENE TODAS LAS CADENAS DE LA BASE DE DATOS 
   getAnillos(uid: any){
-    this.anilloList = this.angularFireDataBase.list('anillo');
     return this.angularFireDataBase.database.ref('anillo').orderByChild('usuario').equalTo(uid);
   }
 
   //  CREA UNA NUEVA CADENA EN LA BASE DE DATOS
-  createAnillo(anillo: any){
-    return this.anilloList.push(anillo).key;
+  // createAnillo(anillo: any){
+  //   return this.anilloList.push(anillo).key;
+  // }
+  
+  createAnillo(id: any, anillo: any){
+    return this.angularFireDataBase.database.ref('anillo').child(id).set(anillo);
   }
 
   // ACTUALIZA UNA CADENA EXISTENTE

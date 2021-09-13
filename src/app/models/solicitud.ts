@@ -3,5 +3,6 @@ export class Solicitud{
     nombre?: String;
     descripcion?: String;    
     modAR?: String;
+    urlAR?: String;
     tipo?: String;
 }

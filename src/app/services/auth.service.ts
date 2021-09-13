@@ -24,12 +24,14 @@ export class AuthService {
     .then((userCredential)=>{
       this.loginId = userCredential.user.uid;
       
-      this.db.database.ref('emprendedor/' + this.loginId).set(
+      this.db.database.ref('emprendimientos/' + this.loginId).set(
         {
-          nombre: form.value.name,
-          celular: form.value.mobile,
+          contrasenia: form.value.pass,
           correo: form.value.email,
-          contrasenia: form.value.pass
+          foto: "https://firebasestorage.googleapis.com/v0/b/razunetfashionug.appspot.com/o/emprendimientos%2F3.jpeg?alt=media&token=1ebb8d74-7f73-4681-8f2f-c83214508d49",
+          marca: form.value.marca,
+          nombre: form.value.name,
+          telefono: form.value.mobile,          
         }
       )
     });
@@ -45,7 +47,7 @@ export class AuthService {
 
   async currentUserId(){
     var uid = await this.auth.authState.pipe(first()).toPromise().then((value)=>value.uid);
-    return this.db.database.ref('emprendedor/' + uid).get().then((value) => value.val().rol);
+    return this.db.database.ref('emprendimientos/' + uid).get().then((value) => value.val().rol);
     
   }
 }

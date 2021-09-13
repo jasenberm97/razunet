@@ -14,12 +14,12 @@ export class EmprendedorService {
   }
 
   getEmprendedor(id: any){
-    return this.db.database.ref('emprendedor/' + id);
+    return this.db.database.ref('emprendimientos/' + id);
 
   }
 
   getEmprendedores(){
-    return this.emprendedorList = this.db.list('emprendedor');
+    return this.emprendedorList = this.db.list('emprendimientos');
     
   }
 

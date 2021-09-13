@@ -64,11 +64,11 @@ export class AnillosComponent implements OnInit {
 
     if (formCadena.value.id == null  && this.urlImage != null && this.urlArchivo != null) {   
       console.log("nuevo registro")
-      var id = this.anilloService.createAnillo(this.anillo);
+      // var id = this.anilloService.createAnillo(this.anillo);
       var modoAr = new Anillo();
       modoAr.usuario = this.user.uid;
       modoAr.modAR = this.urlArchivo;
-      this.anilloService.createModoAr(id, modoAr);
+      // this.anilloService.createModoAr(id, modoAr);
       this.onClearForm(formCadena);
       
     }

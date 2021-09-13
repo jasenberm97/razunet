@@ -31,7 +31,8 @@ export class UsuariosComponent implements OnInit {
         this.emprendedor = {
           name: snapshot.val().nombre,
           email: snapshot.val().correo,
-          mobile: snapshot.val().celular,
+          mobile: snapshot.val().telefono,
+          marca: snapshot.val().marca,
           rol: snapshot.val().rol
         };
       });

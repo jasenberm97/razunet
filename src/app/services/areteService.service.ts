@@ -12,18 +12,24 @@ export class AreteService {
   areteList: AngularFireList<any>;
   areteSelect: Arete = new Arete()
 
-  constructor(public angularFireStorage: AngularFireStorage, public angularFireDataBase: AngularFireDatabase){}
-
+  constructor(public angularFireStorage: AngularFireStorage, public angularFireDataBase: AngularFireDatabase){
+    this.areteList = this.angularFireDataBase.list('arete');
+    
+  }
+  
   //  OBTIENE TODAS LAS CADENAS DE LA BASE DE DATOS 
   getAretes(uid: any){
-    this.areteList = this.angularFireDataBase.list('arete');
     return this.angularFireDataBase.database.ref('arete').orderByChild('usuario').equalTo(uid);
   }
 
   //  CREA UNA NUEVA CADENA EN LA BASE DE DATOS
-  createArete(arete: any){
-    return this.areteList.push(arete).key;
-  }
+  // createArete(arete: any){
+  //   return this.areteList.push(arete).key;
+  // }
+
+  createArete(id: any, arete: any){    
+      return this.angularFireDataBase.database.ref('arete').child(id).set(arete);
+    }
 
   // ACTUALIZA UNA CADENA EXISTENTE
   updateArete(id: any, arete: any){
@@ -39,7 +45,7 @@ export class AreteService {
   uploadImage(file: any): Promise<String>{
     return new Promise(resolve => {
       const id = Math.random().toString(36).substr(2);
-      const filePath = `arete/${id}`;
+      const filePath = `producto/${id}`;
       const ref = this.angularFireStorage.ref(filePath);
       const task = this.angularFireStorage.upload(filePath, file);
 
@@ -59,7 +65,7 @@ export class AreteService {
   async uploadFile(file: any): Promise<String>{
     return await new Promise(resolve => {
       const id = Math.random().toString(36).substr(2);
-      const filePath = `areteFile/${id}`;
+      const filePath = `productoFile/${id}`;
       const ref = this.angularFireStorage.ref(filePath);
       const task = this.angularFireStorage.upload(filePath, file);
 
