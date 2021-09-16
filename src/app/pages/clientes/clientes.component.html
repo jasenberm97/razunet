@@ -33,7 +33,7 @@
                         <th>ACCIONES</th>
                       </tr>
                     </thead>
-                    <tbody *ngFor="let item of cliente | filtro:page; let indice=index">
+                    <tbody *ngFor="let item of cliente; let indice=index">
                       <tr role="row" class="odd">
                         <td hidden>{{ item.id }}</td>
                         <td tabindex="0" class="sorting_1">{{ indice+1 }}</td>

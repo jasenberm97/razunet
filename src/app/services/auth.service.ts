@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { first } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize, first } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthService {
 
   loginId: any;
 
-  constructor(private auth: AngularFireAuth, private db: AngularFireDatabase) { }
+  constructor(private auth: AngularFireAuth, private db: AngularFireDatabase, public angularFireStorage: AngularFireStorage) { }
 
   login(user: string, pass: string){
     return this.auth.signInWithEmailAndPassword(user, pass).then((userCredential)=>{
@@ -19,7 +20,7 @@ export class AuthService {
 
   }
 
-  register(form: any){
+  register(form: any, url: any){
     return this.auth.createUserWithEmailAndPassword(form.value.email, form.value.pass)
     .then((userCredential)=>{
       this.loginId = userCredential.user.uid;
@@ -28,7 +29,7 @@ export class AuthService {
         {
           contrasenia: form.value.pass,
           correo: form.value.email,
-          foto: "https://firebasestorage.googleapis.com/v0/b/razunetfashionug.appspot.com/o/emprendimientos%2F3.jpeg?alt=media&token=1ebb8d74-7f73-4681-8f2f-c83214508d49",
+          foto: url,
           marca: form.value.marca,
           nombre: form.value.name,
           telefono: form.value.mobile,          
@@ -50,4 +51,26 @@ export class AuthService {
     return this.db.database.ref('emprendimientos/' + uid).get().then((value) => value.val().rol);
     
   }
+
+   //  SUBE UNA ARCHIVO Y DEVUELVE LA RUTA DE ACCESO PUBLICO
+   async uploadFile(file: any): Promise<String>{
+    return await new Promise(resolve => {
+      const id = Math.random().toString(36).substr(2);
+      const filePath = `EmprendimientoFace/${id}`;
+      const ref = this.angularFireStorage.ref(filePath);
+      const task = this.angularFireStorage.upload(filePath, file);
+
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          ref.getDownloadURL().subscribe(res => {
+            const urlDownload = res;
+            resolve(urlDownload);
+            return;
+          })
+        })
+      ).subscribe();
+    });
+  }
+
+
 }

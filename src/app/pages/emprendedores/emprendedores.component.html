@@ -33,7 +33,7 @@
                         <th>ACCIONES</th>
                       </tr>
                     </thead>
-                    <tbody *ngFor="let item of emprendedores | filtro:page; let indice=index">
+                    <tbody *ngFor="let item of emprendedores; let indice=index">
                       <tr role="row" class="odd"  *ngIf=" item.rol  != 'administrador'">
                         <td hidden>{{ item.id }}</td>
                         <td tabindex="0" class="sorting_1">{{ indice+1 }}</td>
@@ -41,7 +41,7 @@
                         <td>{{ item.nombre }}</td>
                         <td>{{ item.correo }}</td>
                         <!-- <td>{{ }}</td> -->
-                        <td>{{ item.celular }}</td>
+                        <td>{{ item.telefono }}</td>
                        
                         <td>
                           <!-- <button class="btn btn-warning" data-toggle="tooltip" 

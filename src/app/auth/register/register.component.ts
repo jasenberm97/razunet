@@ -12,6 +12,8 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   submited = false;
+  foto: any;
+  urlImage: any;
 
   constructor(private formBuider: FormBuilder, private auth: AuthService, private route: Router) { }
 
@@ -37,7 +39,10 @@ export class RegisterComponent implements OnInit {
           Validators.email, 
           Validators.pattern(/^[\w-]+(\.[\w-]+)*@([a-z0-9-]+(\.[a-z0-9-]+)*?\.[a-z]{2,6}|(\d{1,3}\.){3}\d{1,3})(:\d{4})?$/)]
         ],
-        pass:["", [Validators.required, Validators.minLength(6)]],
+        pass:["", [
+          Validators.required, Validators.minLength(6),
+          Validators.pattern(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)]
+        ],
         passConfirm:["", Validators.required],
       },
       {
@@ -75,12 +80,38 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.auth.register(this.registerForm).then(()=>{
-      this.route.navigate(['dashboard/usuario']);
-    });
+    if (this.urlImage != null) {
+      this.auth.register(this.registerForm, this.urlImage).then(()=>{
+        this.route.navigate(['dashboard/usuario']);
+      });
+      
+    }
 
     // alert(
     //   "success:"+ JSON.stringify(this.registerForm.value)
     // )
   }
+
+  //  EVENTO QUE CARGA IMAGEN Y OBTIENE URL 
+  async fileEvent(event){
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      if (file.type.includes('image')) {
+        const reader = new FileReader;
+        reader.readAsDataURL(file);
+        
+        reader.onload = function load(){
+          this.foto = reader.result;
+        }.bind(this);
+        
+        this.foto = file;
+
+        this.urlImage = await this.auth.uploadFile(this.foto);
+      }else{
+        console.log("a ocurrido un error");
+      }
+    }
+  }
+
+
 }
